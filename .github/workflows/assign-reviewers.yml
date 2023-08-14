@@ -1,0 +1,29 @@
+name: Assign Reviewers
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  assign_reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Reviewers
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pullRequest } = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+
+            const reviewers = ["reviewer1", "reviewer2"]; // Замените на имена своих ревьюеров
+
+            await github.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              reviewers: reviewers
+            });
