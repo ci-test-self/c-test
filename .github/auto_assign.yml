@@ -5,7 +5,8 @@ addAssignees: author
 assignees:
   - ci-test-self
 
-numberOfAssignees: 0
+numberOfAssignees: 2
 
-skipKeywords:
-  - wip
+reviewers:
+  - AndreyZlobin
+  - AndyZlobin
