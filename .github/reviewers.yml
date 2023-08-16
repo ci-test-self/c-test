@@ -1,0 +1,21 @@
+reviewers:
+  # The default reviewers
+  defaults:
+    - repository-owners # group
+    - octocat # username
+    - team:c-test # GitHub team
+
+files:
+  '**':
+    - repository-owners # group
+    - team:c-test # GitHub team
+
+options:
+  ignore_draft: true
+  ignored_keywords:
+    - DO NOT REVIEW
+  enable_group_assignment: false
+
+  number_of_reviewers: 2
+
+  last_files_match_only: false
