@@ -1,0 +1,29 @@
+name: Auto Assign Reviewers
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  auto_assign_reviewers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Assign reviewers
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const reviewers = ['reviewer1', 'reviewer2']; // Замените на список логинов ревьюеров
+            
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            await octokit.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              reviewers: reviewers
+            });
