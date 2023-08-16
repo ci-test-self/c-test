@@ -1,12 +1,1 @@
-addReviewers: true
-
 addAssignees: author
-
-assignees:
-  - ci-test-self
-
-numberOfAssignees: 1
-
-reviewers:
-  - AndreyZlobin
-  - AndyZlobin
