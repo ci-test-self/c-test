@@ -9,11 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
       - name: Request changes
-        uses: peter-evans/request-changes@v1
+        uses: .github/actions/request-changes
         with:
           reviewers: 'AndreyZlobin, AndyZlobin' # Замените на список логинов ревьюеров
           changes-requested-label: 'Changes Requested'
