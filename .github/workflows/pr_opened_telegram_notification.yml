@@ -5,17 +5,6 @@ on:
     branches: [main, next]
 
 jobs:
-  #   add_labels:
-  #     runs-on: ubuntu-latest
-  #     steps:
-  #       - uses: actions/checkout@v2
-  #       - uses: actions-ecosystem/action-add-labels@v1
-  #         if: ${{ contains(github.event.pull_request.title, 'feat') || contains(github.event.pull_request.title, 'Feat') || contains(github.event.pull_request.title, 'FEAT') }}
-  #         with:
-  #           github_token: ${{ secrets.OWNER_TOKEN }}
-  #           labels: |
-  #             feat
-
   fetch:
     name: fetch
     uses: ./.github/workflows/fetch_pr_info.yml
@@ -41,11 +30,3 @@ jobs:
             👨👨👨 Reviewers: ${{ fromJson(SECRETS.TELEGRAM_ACCOUNTS)[fromJSON(needs.fetch.outputs.result).requested_reviewers[0].login] }}, ${{ fromJson(SECRETS.TELEGRAM_ACCOUNTS)[fromJSON(needs.fetch.outputs.result).requested_reviewers[1].login] }}
             
             ${{ fromJSON(needs.fetch.outputs.result).html_url }}
-
-#   add-designer:
-#     needs: notify
-#     name: add-designer
-#     if: ${{ contains(github.event.pull_request.title, 'feat') || contains(github.event.pull_request.title, 'Feat') || contains(github.event.pull_request.title, 'FEAT') }}
-#     uses: ./.github/workflows/add_designer_to_review.yml
-#     secrets:
-#       token: ${{ secrets.OWNER_TOKEN }}
